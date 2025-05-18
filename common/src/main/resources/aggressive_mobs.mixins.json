@@ -7,7 +7,8 @@
   ],
   "mixins": [
     "MobMixin",
-    "AnimalMixin"
+    "NeutralMobMixin",
+    "PathfinderMobMixin"
   ],
   "injectors": {
     "defaultRequire": 1

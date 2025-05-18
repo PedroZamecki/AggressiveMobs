@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MobMixin",
-    "AnimalMixin"
+    "PathfinderMobMixin",
+    "NeutralMobMixin"
   ],
   "injectors": {
     "defaultRequire": 1
