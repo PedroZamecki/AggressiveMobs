@@ -4,6 +4,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.zamecki.agressive_mobs.entity.ai.goal.AggressiveMeleeAttackGoal;
@@ -31,7 +32,8 @@ public abstract class PathfinderMobMixin extends Mob {
         if (pathfinderMob instanceof IPublicGoalsSelectors iMob) {
             LOGGER.debug("PathfinderMobMixin: Modifying goals for aggression.");
 
-            iMob.aggressive_mobs$getGoalSelector().addGoal(0, new AggressiveMeleeAttackGoal(pathfinderMob, 1.2D, true));
+            double speedModifier = pathfinderMob instanceof Villager ? 0.60D : 1.2D;
+            iMob.aggressive_mobs$getGoalSelector().addGoal(0, new AggressiveMeleeAttackGoal(pathfinderMob, speedModifier, true));
             iMob.aggressive_mobs$getTargetSelector().addGoal(1, new AggressiveNearestAttackableTargetGoal<>(pathfinderMob, Player.class, true));
         } else {
             LOGGER.warn("PathfinderMobMi: 'this' (as Mob) is NOT an instance of IPublicGoalsSelectors! Cannot make sheep aggressive.");
